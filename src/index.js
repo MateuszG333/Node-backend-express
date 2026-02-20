@@ -1,5 +1,6 @@
 import express from "express";
 import movieRoute from "./routes/movies.routes.js";
+import defaultRoute from "./routes/default.routes.js";
 
 const app = express();
 
@@ -7,9 +8,7 @@ app.use(express.json());
 
 const port = 3005;
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+app.use("/", defaultRoute);
 
 app.use("/", movieRoute);
 
