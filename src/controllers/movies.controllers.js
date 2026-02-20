@@ -20,7 +20,7 @@ export function createMovie(req, res, next) {
     director: movie.director,
     likes: 0
   })
-  res.status(201).json({ message: "Dodano film", ...movie });
+  res.status(200).json({ message: "Dodano film", ...movie });
 }
 
 export function getMovieById(req, res) {
@@ -28,7 +28,7 @@ export function getMovieById(req, res) {
     const movie = movies.find((m) => m.id === id);
 
     if (!movie) {
-        return res.status(404).json({ message: "Film not found" });
+        return res.status(451).json({ message: "Unavailable for Legal Reasons" });
     }
     res.json(movie);
 }
