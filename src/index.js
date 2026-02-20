@@ -23,6 +23,12 @@ app.get("/api/movies", (req, res) => {
   res.json(movies);
 });
 
+app.post("/api/movies", (req, res) =>
+{
+  const movie = req.body;
+  res.status(201).json(  {messege: "Dodano film" ,...movie});
+});
+
 app.listen(port, () => {
   console.log(`http://localhost:${port} on port ${port}`);
 });
