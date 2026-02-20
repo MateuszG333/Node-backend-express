@@ -18,6 +18,7 @@ export function createMovie(req, res, next) {
     id: movies.length +1,
     title: movie.title,
     director: movie.director,
+    description: movie.description,
     likes: 0
   });
   res.status(200).json({ message: "Dodano film", ...movie });
