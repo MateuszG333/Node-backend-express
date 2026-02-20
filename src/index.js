@@ -10,7 +10,7 @@ const port = 3005;
 
 app.use("/", defaultRoute);
 
-app.use("/", movieRoute);
+app.use("/api/movies", movieRoute);
 
 app.use((err, req, res, next) => {
   res.status(500).json({
