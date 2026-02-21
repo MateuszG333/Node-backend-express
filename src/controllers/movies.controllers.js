@@ -1,9 +1,20 @@
 import { movies } from "../data/movie.data.js";
-export function getMovies(req, res) {
-  res.json(movies);
+import { Movie } from "../models/movie.js";
+
+// export function getMovies(req, res) {
+//  res.json(movies);
+// }
+
+export const getMovies = async (req, res) => {
+  try{
+    const movies = await Movie.find();
+    res.status(200).json(movies);
+  }catch (e) {
+    res.status(404).json({ message: `Not found ${e.message}` });
+  }
 }
 
-export function createMovie(req, res, next) {
+export const createMovie = async (req, res, next) => {
   const movie = req.body;
 
   if (!movie.title) {
@@ -14,14 +25,21 @@ export function createMovie(req, res, next) {
     return next(new Error("Provide Director"));
     };
 
-  movies.push({
-    id: movies.length +1,
+ // movies.push({
+ // id: movies.length +1,
+ // title: movie.title,
+ // director: movie.director,
+ // description: movie.description,
+ // likes: 0
+ //);
+    const newMovie = await Movie.create({
     title: movie.title,
-    director: movie.director,
     description: movie.description,
-    likes: 0
-  });
-  res.status(200).json({ message: "Dodano film", ...movie });
+    director: movie.director,
+    })
+    console.log("📸 movie created", newMovie);
+
+  res.status(201).json({ message: "Dodano film", ...movie });
 }
 
 export function getMovieById(req, res) {
