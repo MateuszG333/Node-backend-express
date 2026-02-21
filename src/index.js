@@ -2,9 +2,12 @@ import express from "express";
 import movieRoute from "./routes/movies.routes.js";
 import defaultRoute from "./routes/default.routes.js";
 import cors from "cors";
+import "dotenv/config";
+import { connectMongoose } from "./db/mongoose.js";
 
 const app = express();
 app.use(cors())
+await connectMongoose();
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");

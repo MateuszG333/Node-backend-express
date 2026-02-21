@@ -42,7 +42,7 @@ export function incrementLikes(req, res, next) {
 
   if (!movie) {
     const err = new Error("Film nie znaleziony");
-    err.status = 404;
+    err.status = 451;
     return next(err);
   }
 
@@ -58,7 +58,7 @@ export function decrementLikes(req, res, next) {
 
   if (!movie) {
     const err = new Error("Film nie znaleziony");
-    err.status = 404;
+    err.status = 451;
     return next(err);
   }
 
